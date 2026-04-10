@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Delivery Route Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Particle canvas background -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo"><span class="logo-icon">◈</span> RouteAI<span class="logo-dot">.</span></div>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#algorithms">Algorithms</a>
+        <a href="#demo3d">3D Demo</a>
+        <a href="#demo2d">Live Demo</a>
+        <a href="#apps">Applications</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <canvas id="threeCanvas"></canvas>
+    <div class="hero-overlay">
+      <div class="hero-content" id="heroContent">
+        <div class="hero-badge animate-in">Graph-Based AI Pathfinding</div>
+        <h1 class="animate-in delay-1">AI Delivery<br/><span class="accent">Route Planner</span></h1>
+        <p class="animate-in delay-2">Modelling road networks as weighted 3D graphs. Five intelligent search algorithms compete to find your optimal path.</p>
+        <div class="hero-btns animate-in delay-3">
+          <a href="#demo3d" class="btn-primary">Explore 3D Demo</a>
+          <a href="#demo2d" class="btn-ghost">Run Algorithms</a>
+        </div>
+      </div>
+      <div class="hero-stats animate-in delay-3">
+        <div class="stat"><span class="stat-n">5</span><span>Algorithms</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n">↓30%</span><span>Fuel Saved</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n">2×</span><span>Faster Routes</span></div>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll to explore ↓</div>
+  </section>
+
+  <!-- Problem / Solution -->
+  <section id="problem" class="section">
+    <div class="container">
+      <div class="two-col">
+        <div class="reveal-card">
+          <div class="card-num">01</div>
+          <h3>Problem Statement</h3>
+          <ul class="icon-list">
+            <li><span class="li-icon">✕</span> Non-optimized delivery paths</li>
+            <li><span class="li-icon">✕</span> Higher time &amp; fuel consumption</li>
+            <li><span class="li-icon">✕</span> Lack of intelligent decision-making</li>
+          </ul>
+        </div>
+        <div class="reveal-card">
+          <div class="card-num">02</div>
+          <h3>Proposed Solution</h3>
+          <p>An AI system that models city roads as a <strong>weighted graph</strong> — nodes as locations, edges as roads with travel costs. Graph search algorithms explore this structure to find the fastest, cheapest route.</p>
+        </div>
+      </div>
+      <!-- Methodology flow -->
+      <div class="methodology reveal-up">
+        <div class="meth-title">Methodology Pipeline</div>
+        <div class="meth-flow">
+          <div class="meth-step"><span class="ms-num">01</span>User Input</div>
+          <div class="meth-arrow">⟶</div>
+          <div class="meth-step"><span class="ms-num">02</span>Graph Creation</div>
+          <div class="meth-arrow">⟶</div>
+          <div class="meth-step"><span class="ms-num">03</span>Apply Algorithms</div>
+          <div class="meth-arrow">⟶</div>
+          <div class="meth-step"><span class="ms-num">04</span>Compare Results</div>
+          <div class="meth-arrow">⟶</div>
+          <div class="meth-step"><span class="ms-num">05</span>Display Route</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Algorithms -->
+  <section id="algorithms" class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">Core AI</div>
+        <h2>Algorithms Used</h2>
+      </div>
+      <div class="algo-grid">
+        <div class="algo-card reveal-up" style="--delay:0s">
+          <div class="algo-glow bfs-glow"></div>
+          <div class="algo-header"><span class="algo-tag bfs">BFS</span></div>
+          <div class="algo-name">Breadth-First Search</div>
+          <p>Explores all neighbours level by level. Guarantees shortest path in unweighted graphs by visiting every possible node at each depth before going deeper.</p>
+          <div class="algo-meta"><span class="met yes">✓ Complete</span><span class="met">O(V+E)</span><span class="met warn">Unweighted</span></div>
+        </div>
+        <div class="algo-card reveal-up" style="--delay:.08s">
+          <div class="algo-glow dfs-glow"></div>
+          <div class="algo-header"><span class="algo-tag dfs">DFS</span></div>
+          <div class="algo-name">Depth-First Search</div>
+          <p>Dives deep into one branch before backtracking. Memory-efficient and useful for maze-solving, but doesn't guarantee the shortest or cheapest path.</p>
+          <div class="algo-meta"><span class="met yes">✓ Complete</span><span class="met">O(V+E)</span><span class="met warn">Not Optimal</span></div>
+        </div>
+        <div class="algo-card reveal-up" style="--delay:.16s">
+          <div class="algo-glow ucs-glow"></div>
+          <div class="algo-header"><span class="algo-tag ucs">UCS</span></div>
+          <div class="algo-name">Uniform Cost / Dijkstra</div>
+          <p>Expands the lowest-cost node first using a priority queue. Always finds the optimal path in weighted graphs — the gold standard for real road networks.</p>
+          <div class="algo-meta"><span class="met yes">✓ Optimal</span><span class="met">O((V+E)logV)</span><span class="met ok">Weighted</span></div>
+        </div>
+        <div class="algo-card reveal-up" style="--delay:.24s">
+          <div class="algo-glow astar-glow"></div>
+          <div class="algo-header"><span class="algo-tag astar">A★</span></div>
+          <div class="algo-name">A* Algorithm</div>
+          <p>Combines actual cost + heuristic estimate. The fastest optimal pathfinder — intelligently guided toward the goal, skipping irrelevant branches entirely.</p>
+          <div class="algo-meta"><span class="met yes">✓ Optimal</span><span class="met">O(E)</span><span class="met ok">Fastest</span></div>
+        </div>
+        <div class="algo-card reveal-up" style="--delay:.32s">
+          <div class="algo-glow greedy-glow"></div>
+          <div class="algo-header"><span class="algo-tag greedy">Greedy</span></div>
+          <div class="algo-name">Greedy Best-First</div>
+          <p>Always moves to the node that looks closest to the goal using heuristic alone. Very fast but may miss the globally optimal path in complex networks.</p>
+          <div class="algo-meta"><span class="met warn">Not Optimal</span><span class="met">O(E logV)</span><span class="met ok">Very Fast</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Demo -->
+  <section id="demo3d" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">3D Visualization</div>
+        <h2>Interactive 3D Graph</h2>
+        <p class="section-sub">Drag to rotate · Scroll to zoom · Click "Animate" to watch the algorithm traverse the graph in 3D space</p>
+      </div>
+      <div class="demo3d-wrap">
+        <div class="demo3d-controls">
+          <div class="ctrl-group">
+            <label>Algorithm</label>
+            <div class="algo-pills" id="algoPills">
+              <button class="pill active" data-algo="bfs">BFS</button>
+              <button class="pill" data-algo="dfs">DFS</button>
+              <button class="pill" data-algo="ucs">UCS</button>
+              <button class="pill" data-algo="astar">A★</button>
+              <button class="pill" data-algo="greedy">Greedy</button>
+            </div>
+          </div>
+          <div class="ctrl-row">
+            <div class="ctrl-group">
+              <label>Start</label>
+              <select id="start3d"></select>
+            </div>
+            <div class="ctrl-group">
+              <label>End</label>
+              <select id="end3d"></select>
+            </div>
+          </div>
+          <button class="btn-animate" id="animateBtn" onclick="animate3D()">▶ Animate Path</button>
+          <div class="result3d" id="result3d"><span class="rph">Select nodes and animate…</span></div>
+          <div class="legend3d">
+            <div class="leg"><span class="ldot" style="background:#a78bfa"></span>Start node</div>
+            <div class="leg"><span class="ldot" style="background:#34d399"></span>End node</div>
+            <div class="leg"><span class="ldot" style="background:#fbbf24"></span>Path node</div>
+            <div class="leg"><span class="ldot" style="background:#1e1c35;border:1px solid #4c4a7a"></span>Other</div>
+          </div>
+        </div>
+        <canvas id="canvas3d"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2D Live Demo -->
+  <section id="demo2d" class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">Live Demo</div>
+        <h2>Step-by-Step 2D Demo</h2>
+        <p class="section-sub">Watch the algorithm animate node-by-node on the 2D graph canvas</p>
+      </div>
+      <div class="demo2d-wrap">
+        <div class="demo2d-controls">
+          <div class="ctrl-group">
+            <label>Algorithm</label>
+            <select id="algoSelect2d">
+              <option value="bfs">BFS — Breadth-First Search</option>
+              <option value="dfs">DFS — Depth-First Search</option>
+              <option value="ucs">UCS / Dijkstra</option>
+              <option value="astar" selected>A* Algorithm</option>
+              <option value="greedy">Greedy Best-First</option>
+            </select>
+          </div>
+          <div class="ctrl-row">
+            <div class="ctrl-group">
+              <label>Start</label>
+              <select id="startNode2d"></select>
+            </div>
+            <div class="ctrl-group">
+              <label>End</label>
+              <select id="endNode2d"></select>
+            </div>
+          </div>
+          <div class="ctrl-group">
+            <label>Animation Speed</label>
+            <input type="range" id="speedRange" min="100" max="1000" value="500" step="50"/>
+            <span id="speedLabel" style="font-size:12px;color:var(--text-muted)">500ms</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-run" onclick="runAnimated2D()">▶ Run</button>
+            <button class="btn-reset" onclick="resetDemo()">↺ Reset</button>
+          </div>
+          <div class="result2d" id="result2d"><span class="rph">Result appears here…</span></div>
+        </div>
+        <canvas id="canvas2d"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance -->
+  <section id="perf" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">Analysis</div>
+        <h2>Performance Comparison</h2>
+      </div>
+      <div class="perf-wrap reveal-up">
+        <table class="perf-table">
+          <thead>
+            <tr><th>Algorithm</th><th>Optimal?</th><th>Complete?</th><th>Time</th><th>Space</th><th>Best For</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="algo-tag bfs sm">BFS</span></td><td class="yes">Yes*</td><td class="yes">Yes</td><td>O(V+E)</td><td>O(V)</td><td>Unweighted graphs</td></tr>
+            <tr><td><span class="algo-tag dfs sm">DFS</span></td><td class="no">No</td><td class="yes">Yes</td><td>O(V+E)</td><td>O(V)</td><td>Exploring all paths</td></tr>
+            <tr><td><span class="algo-tag ucs sm">UCS</span></td><td class="yes">Yes</td><td class="yes">Yes</td><td>O((V+E)logV)</td><td>O(V)</td><td>Weighted graphs</td></tr>
+            <tr class="highlight-row"><td><span class="algo-tag astar sm">A★</span></td><td class="yes">Yes</td><td class="yes">Yes</td><td>O(E)</td><td>O(V)</td><td>Fastest optimal routing</td></tr>
+            <tr><td><span class="algo-tag greedy sm">Greedy</span></td><td class="no">No</td><td class="no">No</td><td>O(E logV)</td><td>O(V)</td><td>Quick approximate</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">* BFS optimal only for unweighted graphs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section id="apps" class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">Real World</div>
+        <h2>Applications &amp; Impact</h2>
+      </div>
+      <div class="apps-grid">
+        <div class="app-card reveal-up" style="--delay:0s"><div class="app-icon">🍔</div><strong>Food Delivery</strong><p>Optimized multi-stop city routing</p></div>
+        <div class="app-card reveal-up" style="--delay:.07s"><div class="app-icon">📦</div><strong>Logistics</strong><p>Fleet routing for warehouses</p></div>
+        <div class="app-card reveal-up" style="--delay:.14s"><div class="app-icon">🚗</div><strong>Ride-Sharing</strong><p>Shortest pickup-to-dropoff paths</p></div>
+        <div class="app-card reveal-up" style="--delay:.21s"><div class="app-icon">🧭</div><strong>Navigation</strong><p>Real-time GPS turn-by-turn</p></div>
+        <div class="app-card reveal-up" style="--delay:.28s"><div class="app-icon">🏥</div><strong>Emergency</strong><p>Fastest ambulance routing</p></div>
+        <div class="app-card reveal-up" style="--delay:.35s"><div class="app-icon">🛒</div><strong>E-Commerce</strong><p>Last-mile delivery optimization</p></div>
+      </div>
+      <div class="impact-row">
+        <div class="impact-card reveal-up"><div class="impact-n">↓ 30%</div><div>Fuel Costs</div></div>
+        <div class="impact-card reveal-up" style="--delay:.1s"><div class="impact-n">2×</div><div>Route Efficiency</div></div>
+        <div class="impact-card reveal-up" style="--delay:.2s"><div class="impact-n">↓ 25%</div><div>Delivery Time</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="logo"><span class="logo-icon">◈</span> RouteAI<span class="logo-dot">.</span></span>
+      <span>AI Delivery Route Planner using Graph Search — HTML · CSS · Three.js</span>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
